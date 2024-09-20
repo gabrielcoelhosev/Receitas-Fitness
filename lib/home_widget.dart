@@ -74,7 +74,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                           Text(
                             _photos[index].text,
-                            style: TextStyle(fontFamily: 'PoppinsM'),
+                            style: TextStyle(
+                                fontFamily: 'PoppinsM',
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),

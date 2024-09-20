@@ -93,5 +93,9 @@ flutter:
        fonts:
          - asset: assets/fonts/Poppins-Thin.ttf
 
+     - family: Kanit
+       fonts:
+         - asset: assets/fonts/Kanit-Light.ttf    
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
