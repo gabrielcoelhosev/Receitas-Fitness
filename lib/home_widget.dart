@@ -22,7 +22,9 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'Receitas Fitness',
@@ -30,34 +32,49 @@ class _HomeWidgetState extends State<HomeWidget> {
               fontFamily: 'Lobster', color: Colors.lightGreen, fontSize: 30),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: GridView.builder(
-                itemCount: _photos.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 5, color: Colors.white),
-                        borderRadius: BorderRadius.circular(30),
-                        image: DecorationImage(
-                            image: AssetImage(_photos[index].image),
-                            fit: BoxFit.cover),
+      body: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              flex: 40,
+              child: GridView.builder(
+                  itemCount: _photos.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 170,
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 3, color: Colors.white),
+                              borderRadius: BorderRadius.circular(30),
+                              image: DecorationImage(
+                                  image: AssetImage(_photos[index].image),
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 1,
+                          ),
+                          Text(
+                            _photos[index].text,
+                            style: TextStyle(fontFamily: 'PoppinsM'),
+                          ),
+                        ],
                       ),
-                    ),
-                  );
-                }),
-          ),
-        ],
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }
