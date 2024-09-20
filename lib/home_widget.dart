@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:receitas_fitness/data_class.dart';
+import 'package:receitas_fitness/receitas/receita_bolo.dart';
+import 'package:receitas_fitness/receitas/receita_churros.dart';
+import 'package:receitas_fitness/receitas/receita_coxinha.dart';
+import 'package:receitas_fitness/receitas/receita_crepioca.dart';
+import 'package:receitas_fitness/receitas/receita_lasanha.dart';
+import 'package:receitas_fitness/receitas/receuta_brigadeiro.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -9,7 +15,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  List _photos = [
+  final List _photos = [
     Data(image: "assets/imgs/coxinha.jpg", text: "Coxinha Low Carb"),
     Data(image: "assets/imgs/lasanha.jpg", text: "Lasanha Fit"),
     Data(
@@ -36,18 +42,20 @@ class _HomeWidgetState extends State<HomeWidget> {
         padding: const EdgeInsets.all(4.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
               flex: 40,
               child: GridView.builder(
                   itemCount: _photos.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        _telasReceitas(index);
+                      },
                       child: Column(
                         children: [
                           Container(
@@ -61,7 +69,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   fit: BoxFit.cover),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 1,
                           ),
                           Text(
@@ -77,5 +85,49 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
       ),
     );
+  }
+
+  void _telasReceitas(int index) {
+    if (index == 0) {
+      setState(() {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ReceitaCoxinha()));
+      });
+    }
+
+    if (index == 1) {
+      setState(() {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ReceitaLasanha()));
+      });
+    }
+
+    if (index == 2) {
+      setState(() {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ReceitaBrigadeiro()));
+      });
+    }
+
+    if (index == 3) {
+      setState(() {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ReceitaChurros()));
+      });
+    }
+
+    if (index == 4) {
+      setState(() {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ReceitaCrepioca()));
+      });
+    }
+
+    if (index == 5) {
+      setState(() {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ReceitaBolo()));
+      });
+    }
   }
 }
