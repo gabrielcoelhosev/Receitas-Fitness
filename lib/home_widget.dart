@@ -15,14 +15,48 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  final List _photos = [
-    Data(image: "assets/imgs/coxinha.jpg", text: "Coxinha Low Carb"),
-    Data(image: "assets/imgs/lasanha.jpg", text: "Lasanha Fit"),
-    Data(image: "assets/imgs/brigadeiro.jpg", text: "Brigadeiro Fit"),
-    Data(image: "assets/imgs/churros.jpg", text: "Churros Fit"),
-    Data(image: "assets/imgs/crepioca.jpg", text: "Crepioca Fit"),
-    Data(image: "assets/imgs/bolo.jpg", text: "Bolo de Chocolate Fit"),
+  final List<Data> _originalPhotos = [
+    Data(
+        image: "assets/imgs/coxinha.jpg",
+        text: "Coxinha Low Carb",
+        tempo: 45,
+        tipo: "salgado"),
+    Data(
+        image: "assets/imgs/lasanha.jpg",
+        text: "Lasanha Fit",
+        tempo: 15,
+        tipo: "salgado"),
+    Data(
+        image: "assets/imgs/brigadeiro.jpg",
+        text: "Brigadeiro Fit",
+        tempo: 60,
+        tipo: "doce"),
+    Data(
+        image: "assets/imgs/churros.jpg",
+        text: "Churros Fit",
+        tempo: 45,
+        tipo: "doce"),
+    Data(
+        image: "assets/imgs/crepioca.jpg",
+        text: "Crepioca Fit",
+        tempo: 5,
+        tipo: "salgado"),
+    Data(
+        image: "assets/imgs/bolo.jpg",
+        text: "Bolo de Chocolate Fit",
+        tempo: 50,
+        tipo: "doce"),
   ];
+
+  List<Data> _photos = [];
+  String _filtroAtual =
+      'Todas as Receitas'; // Variável para armazenar o filtro atual
+
+  @override
+  void initState() {
+    super.initState();
+    _photos = List.from(_originalPhotos);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,25 +68,85 @@ class _HomeWidgetState extends State<HomeWidget> {
         title: const Text(
           'Receitas Fitness',
           style: TextStyle(
-              fontFamily: 'Lobster', color: Colors.lightGreen, fontSize: 30),
+              fontFamily: 'Lobster', color: Colors.green, fontSize: 30),
         ),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.filter_list, color: Colors.green),
+            onSelected: (String value) {
+              _filtrarReceitas(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem<String>(
+                  value: 'menos_de_10_minutos',
+                  child: Text(
+                    'Menos de 10 minutos',
+                    style: TextStyle(
+                        fontFamily: 'Lobster',
+                        color: Colors.black,
+                        fontSize: 20),
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'salgado',
+                  child: Text(
+                    'Salgado',
+                    style: TextStyle(
+                        fontFamily: 'Lobster',
+                        color: Colors.black,
+                        fontSize: 20),
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'doce',
+                  child: Text(
+                    'Doce',
+                    style: TextStyle(
+                        fontFamily: 'Lobster',
+                        color: Colors.black,
+                        fontSize: 20),
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'reset',
+                  child: Text(
+                    'Resetar Filtros',
+                    style: TextStyle(
+                        fontFamily: 'Lobster', color: Colors.red, fontSize: 20),
+                  ),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
-        // Adicione o SingleChildScrollView aqui
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Exibe o filtro apenas se não for "Todas as Receitas"
+              if (_filtroAtual != 'Todas as Receitas:')
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    _filtroAtual,
+                    style: const TextStyle(
+                        fontFamily: 'Lobster',
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               const SizedBox(height: 20),
               GridView.builder(
-                shrinkWrap:
-                    true, // Permite que o GridView use apenas o espaço necessário
-                physics:
-                    const NeverScrollableScrollPhysics(), // Desabilita a rolagem do GridView
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: _photos.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.90, // Ajuste a proporção
+                  childAspectRatio: 0.9,
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
@@ -63,7 +157,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 150, // Ajuste a altura para evitar overflow
+                          height: 160,
                           decoration: BoxDecoration(
                             border: Border.all(width: 3, color: Colors.white),
                             borderRadius: BorderRadius.circular(30),
@@ -73,18 +167,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                            height: 8), // Espaço entre a imagem e o texto
+                        const SizedBox(height: 8),
                         Text(
                           _photos[index].text,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: 'PoppinsM',
                               fontWeight: FontWeight.bold,
                               fontSize: 17),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(
-                            height: 20), // Espaço extra abaixo do texto
+                        const SizedBox(height: 20),
                       ],
                     ),
                   );
@@ -95,6 +187,31 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
       ),
     );
+  }
+
+  void _filtrarReceitas(String filtro) {
+    if (filtro == 'menos_de_10_minutos') {
+      setState(() {
+        _photos = _originalPhotos.where((data) => data.tempo <= 10).toList();
+        _filtroAtual = 'Menos de 10 minutos:'; // Atualiza o filtro atual
+      });
+    } else if (filtro == 'salgado') {
+      setState(() {
+        _photos =
+            _originalPhotos.where((data) => data.tipo == 'salgado').toList();
+        _filtroAtual = 'Salgado:'; // Atualiza o filtro atual
+      });
+    } else if (filtro == 'doce') {
+      setState(() {
+        _photos = _originalPhotos.where((data) => data.tipo == 'doce').toList();
+        _filtroAtual = 'Doce:'; // Atualiza o filtro atual
+      });
+    } else if (filtro == 'reset') {
+      setState(() {
+        _photos = List.from(_originalPhotos);
+        _filtroAtual = 'Todas as Receitas:'; // Reseta o filtro atual
+      });
+    }
   }
 
   void _telasReceitas(int index) {

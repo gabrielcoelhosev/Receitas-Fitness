@@ -73,7 +73,7 @@ class ReceitaCoxinha extends StatelessWidget {
                 const Icon(Icons.timer),
                 Text(
                   " $tempo minutos",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'PoppinsM', fontWeight: FontWeight.bold),
                 ),
               ],
@@ -94,11 +94,11 @@ class ReceitaCoxinha extends StatelessWidget {
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               itemCount: ingredientes.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount:
-                    3, // Número de itens por linha (2 ingredientes por linha)
+                    3, // Número de itens por linha (3 ingredientes por linha)
                 crossAxisSpacing: 5, // Espaçamento horizontal entre os itens
                 mainAxisSpacing: 5, // Espaçamento vertical entre os itens
                 childAspectRatio:
