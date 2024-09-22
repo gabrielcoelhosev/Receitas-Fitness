@@ -98,11 +98,11 @@ class ReceitaCoxinha extends StatelessWidget {
               itemCount: ingredientes.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount:
-                    3, // Número de itens por linha (3 ingredientes por linha)
-                crossAxisSpacing: 5, // Espaçamento horizontal entre os itens
-                mainAxisSpacing: 5, // Espaçamento vertical entre os itens
+                    3, 
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5, 
                 childAspectRatio:
-                    2, // Controla a proporção de largura/altura dos itens
+                    2, 
               ),
               itemBuilder: (BuildContext context, int index) {
                 return Card(
