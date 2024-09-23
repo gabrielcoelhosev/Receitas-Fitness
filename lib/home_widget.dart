@@ -49,8 +49,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   ];
 
   List<Data> _photos = [];
-  String _filtroAtual =
-      'Todas as Receitas'; // Variável para armazenar o filtro atual
+  String _filtroAtual = 'Todas as Receitas';
 
   @override
   void initState() {
@@ -127,18 +126,16 @@ class _HomeWidgetState extends State<HomeWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Exibe o filtro apenas se não for "Todas as Receitas"
-              if (_filtroAtual != 'Todas as Receitas:')
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    _filtroAtual,
-                    style: const TextStyle(
-                        fontFamily: 'Lobster',
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Text(
+                  _filtroAtual,
+                  style: const TextStyle(
+                      fontFamily: 'Lobster',
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
                 ),
+              ),
               const SizedBox(height: 20),
               GridView.builder(
                 shrinkWrap: true,

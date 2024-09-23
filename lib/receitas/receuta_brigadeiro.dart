@@ -46,14 +46,14 @@ class ReceitaBrigadeiro extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
               height: 280,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage("assets/imgs/brigadeiro.jpg"),
                       fit: BoxFit.cover)),
             ),
@@ -66,7 +66,7 @@ class ReceitaBrigadeiro extends StatelessWidget {
                 const Icon(Icons.timer),
                 Text(
                   " $tempo minutos",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'PoppinsM', fontWeight: FontWeight.bold),
                 ),
               ],
@@ -93,9 +93,9 @@ class ReceitaBrigadeiro extends StatelessWidget {
                 crossAxisCount:
                     3, 
                 crossAxisSpacing: 5, 
-                mainAxisSpacing: 5, // Espaçamento vertical entre os itens
+                mainAxisSpacing: 5,
                 childAspectRatio:
-                    2, // Controla a proporção de largura/altura dos itens
+                    2,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return Card(
