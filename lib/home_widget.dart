@@ -5,7 +5,7 @@ import 'package:receitas_fitness/receitas/receita_churros.dart';
 import 'package:receitas_fitness/receitas/receita_coxinha.dart';
 import 'package:receitas_fitness/receitas/receita_crepioca.dart';
 import 'package:receitas_fitness/receitas/receita_lasanha.dart';
-import 'package:receitas_fitness/receitas/receuta_brigadeiro.dart';
+import 'package:receitas_fitness/receitas/receita_brigadeiro.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -148,7 +148,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      _telasReceitas(index);
+                      _telasReceitas(
+                          _photos[index]); // Passa o objeto Data diretamente
                     },
                     child: Column(
                       children: [
@@ -196,7 +197,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       setState(() {
         _photos =
             _originalPhotos.where((data) => data.tipo == 'salgado').toList();
-        _filtroAtual = 'Salgado:'; 
+        _filtroAtual = 'Salgado:';
       });
     } else if (filtro == 'doce') {
       setState(() {
@@ -211,28 +212,24 @@ class _HomeWidgetState extends State<HomeWidget> {
     }
   }
 
-  void _telasReceitas(int index) {
-    if (index == 0) {
+  // Função modificada para receber diretamente o objeto 'Data'
+  void _telasReceitas(Data receita) {
+    if (receita.text == "Coxinha Low Carb") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ReceitaCoxinha()));
-    }
-    if (index == 1) {
+    } else if (receita.text == "Lasanha Fit") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ReceitaLasanha()));
-    }
-    if (index == 2) {
+    } else if (receita.text == "Brigadeiro Fit") {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => ReceitaBrigadeiro()));
-    }
-    if (index == 3) {
+    } else if (receita.text == "Churros Fit") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ReceitaChurros()));
-    }
-    if (index == 4) {
+    } else if (receita.text == "Crepioca Fit") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ReceitaCrepioca()));
-    }
-    if (index == 5) {
+    } else if (receita.text == "Bolo de Chocolate Fit") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ReceitaBolo()));
     }
