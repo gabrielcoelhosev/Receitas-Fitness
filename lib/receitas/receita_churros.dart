@@ -46,14 +46,14 @@ class ReceitaChurros extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
               height: 280,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage("assets/imgs/churros.jpg"),
                       fit: BoxFit.cover)),
             ),
@@ -66,7 +66,7 @@ class ReceitaChurros extends StatelessWidget {
                 const Icon(Icons.timer),
                 Text(
                   " $tempo minutos",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: 'PoppinsM', fontWeight: FontWeight.bold),
                 ),
               ],
@@ -90,12 +90,10 @@ class ReceitaChurros extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               itemCount: ingredientes.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    3, // Número de itens por linha (2 ingredientes por linha)
-                crossAxisSpacing: 5, // Espaçamento horizontal entre os itens
-                mainAxisSpacing: 5, // Espaçamento vertical entre os itens
-                childAspectRatio:
-                    2, // Controla a proporção de largura/altura dos itens
+                crossAxisCount:3,
+                crossAxisSpacing: 5, 
+                mainAxisSpacing: 5, 
+                childAspectRatio: 2,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return Card(

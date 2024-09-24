@@ -190,23 +190,23 @@ class _HomeWidgetState extends State<HomeWidget> {
     if (filtro == 'menos_de_10_minutos') {
       setState(() {
         _photos = _originalPhotos.where((data) => data.tempo <= 10).toList();
-        _filtroAtual = 'Menos de 10 minutos:'; // Atualiza o filtro atual
+        _filtroAtual = 'Menos de 10 minutos:';
       });
     } else if (filtro == 'salgado') {
       setState(() {
         _photos =
             _originalPhotos.where((data) => data.tipo == 'salgado').toList();
-        _filtroAtual = 'Salgado:'; // Atualiza o filtro atual
+        _filtroAtual = 'Salgado:'; 
       });
     } else if (filtro == 'doce') {
       setState(() {
         _photos = _originalPhotos.where((data) => data.tipo == 'doce').toList();
-        _filtroAtual = 'Doce:'; // Atualiza o filtro atual
+        _filtroAtual = 'Doce:';
       });
     } else if (filtro == 'reset') {
       setState(() {
         _photos = List.from(_originalPhotos);
-        _filtroAtual = 'Todas as Receitas:'; // Reseta o filtro atual
+        _filtroAtual = 'Todas as Receitas:';
       });
     }
   }

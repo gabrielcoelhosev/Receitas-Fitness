@@ -53,14 +53,14 @@ class ReceitaCoxinha extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
               height: 280,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage("assets/imgs/coxinha.jpg"),
                       fit: BoxFit.cover)),
             ),
@@ -97,12 +97,10 @@ class ReceitaCoxinha extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               itemCount: ingredientes.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    3, 
+                crossAxisCount:3, 
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5, 
-                childAspectRatio:
-                    2, 
+                childAspectRatio: 2, 
               ),
               itemBuilder: (BuildContext context, int index) {
                 return Card(

@@ -90,12 +90,10 @@ class ReceitaBrigadeiro extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               itemCount: ingredientes.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    3, 
+                crossAxisCount: 3, 
                 crossAxisSpacing: 5, 
                 mainAxisSpacing: 5,
-                childAspectRatio:
-                    2,
+                childAspectRatio: 2,
               ),
               itemBuilder: (BuildContext context, int index) {
                 return Card(
